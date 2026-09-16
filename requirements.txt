@@ -1,0 +1,12 @@
+# Airflow ставится отдельно, со своим constraints-файлом (см. README)
+apache-airflow==3.3.1
+
+pandas==3.0.5
+mlflow>=3.0,<4.0
+
+# все версии взяты из constraints Airflow и продублированы
+# в code/deployment/api/requirements.txt: модель обучается здесь,
+# а распаковывается в контейнере, версии должны совпадать
+scikit-learn==1.9.0
+numpy==2.5.1
+joblib==1.5.3

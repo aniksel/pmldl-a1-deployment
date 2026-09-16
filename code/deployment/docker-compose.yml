@@ -1,0 +1,23 @@
+services:
+  api:
+    build:
+      # контекст - корень проекта, чтобы образ видел и код, и модель
+      context: ../..
+      dockerfile: code/deployment/api/Dockerfile
+    container_name: housing-api
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  app:
+    build:
+      context: ../..
+      dockerfile: code/deployment/app/Dockerfile
+    container_name: housing-app
+    ports:
+      - "8501:8501"
+    environment:
+      - API_URL=http://api:8000
+    depends_on:
+      - api
+    restart: unless-stopped
