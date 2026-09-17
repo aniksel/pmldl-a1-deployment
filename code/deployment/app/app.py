@@ -1,4 +1,4 @@
-# веб-приложение: форма -> запрос в API -> предсказанная цена
+# web app: form -> request to the API -> predicted price
 
 import os
 

@@ -1,5 +1,5 @@
-# описание колонок и генерация признаков
-# импортируется и обучением, и API, чтобы формулы не разъехались
+# column names and feature engineering
+# imported by both training and the API, so the formulas cannot differ
 
 TARGET = "median_house_value"
 
@@ -18,7 +18,7 @@ CATEGORICAL = ["ocean_proximity"]
 
 DERIVED = ["rooms_per_household", "bedrooms_per_room", "population_per_household"]
 
-# то, что в итоге видит модель
+# what the model finally sees
 MODEL_NUMERIC = NUMERIC + DERIVED
 
 

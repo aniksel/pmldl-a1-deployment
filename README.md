@@ -81,9 +81,14 @@ python code/datasets/download_data.py --force
 
 ## Running the pipeline manually
 
+`models/model.pkl` is **not** committed to the repository: it is an output of
+Stage 2 and is regenerated on every pipeline run. Run the stages in order — the
+Docker build of the API copies that file into the image, so Stage 3 fails if
+Stage 2 has not run yet.
+
 ```bash
 python code/datasets/prepare_data.py     # Stage 1
-python code/models/train_model.py        # Stage 2
+python code/models/train_model.py        # Stage 2 -> creates models/model.pkl
 
 cd code/deployment
 docker compose up --build                # Stage 3

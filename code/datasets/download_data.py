@@ -1,4 +1,4 @@
-# качает сырые данные в data/raw, запускается один раз вручную
+# downloads the raw data into data/raw, run once by hand
 
 import sys
 import urllib.request

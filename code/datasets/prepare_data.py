@@ -1,4 +1,4 @@
-# стадия 1: чистка и разбиение данных
+# stage 1: clean and split the data
 # data/raw/housing.csv -> data/processed/train.csv, data/processed/test.csv
 
 import sys

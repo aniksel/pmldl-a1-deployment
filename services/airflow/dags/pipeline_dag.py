@@ -1,4 +1,4 @@
-# весь пайплайн: данные -> модель -> деплой, запуск каждые 5 минут
+# the whole pipeline: data -> model -> deployment, runs every 5 minutes
 
 from datetime import datetime
 from pathlib import Path
@@ -6,7 +6,7 @@ from pathlib import Path
 from airflow.providers.standard.operators.bash import BashOperator
 from airflow.sdk import DAG
 
-# dags/ -> airflow/ -> services/ -> корень проекта
+# dags/ -> airflow/ -> services/ -> project root
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 PYTHON = PROJECT_ROOT / ".venv" / "bin" / "python"
 DEPLOYMENT_DIR = PROJECT_ROOT / "code" / "deployment"
@@ -16,7 +16,7 @@ with DAG(
     start_date=datetime(2026, 1, 1),
     schedule="*/5 * * * *",
     catchup=False,
-    # не запускать новый прогон, пока не закончился предыдущий
+    # do not start a new run until the previous one is finished
     max_active_runs=1,
     tags=["pmldl"],
 ) as dag:

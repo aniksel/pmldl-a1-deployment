@@ -7,7 +7,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY code/features.py .
 COPY code/deployment/api/main.py .
-# модель кладётся в образ, поэтому образ пересобирается после каждого обучения
+# the model goes inside the image, so the image is rebuilt after every training
 COPY models/model.pkl .
 
 EXPOSE 8000

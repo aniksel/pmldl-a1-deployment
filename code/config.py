@@ -14,10 +14,10 @@ MLFLOW_TRACKING_URI = "sqlite:///" + str(PROJECT_ROOT / "mlflow.db")
 MLFLOW_ARTIFACTS = (PROJECT_ROOT / "mlartifacts").as_uri()
 MLFLOW_EXPERIMENT = "california-housing"
 
-# все дома дороже 500000 записаны одним и тем же числом, поэтому их убираем
+# every house above 500000 was recorded with the same value, so we drop these rows
 TARGET_CAP = 500000
 
-# колонки с длинным правым хвостом, режем их по IQR
+# columns with a long right tail, cut with the IQR rule
 OUTLIER_COLUMNS = ["total_rooms", "total_bedrooms", "population", "households", "median_income"]
 
 TEST_SIZE = 0.2

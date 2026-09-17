@@ -1,4 +1,4 @@
-# API модели: принимает параметры района, возвращает предсказанную цену
+# model API: takes district values and returns the predicted price
 
 import joblib
 import pandas as pd

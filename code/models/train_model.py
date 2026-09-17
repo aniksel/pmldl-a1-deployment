@@ -1,5 +1,5 @@
-# стадия 2: признаки, обучение, оценка, сохранение модели
-# data/processed/*.csv -> models/model.pkl + метрики в MLflow
+# stage 2: features, training, evaluation, saving the model
+# data/processed/*.csv -> models/model.pkl + metrics in MLflow
 
 import json
 import sys
@@ -38,7 +38,7 @@ columns = MODEL_NUMERIC + CATEGORICAL
 X_train, y_train = train[columns], train[TARGET]
 X_test, y_test = test[columns], test[TARGET]
 
-# деревьям масштабирование не нужно, кодируем только категорию
+# trees do not need scaling, so we only encode the category
 preprocessor = ColumnTransformer(
     [("cat", OneHotEncoder(handle_unknown="ignore"), CATEGORICAL)],
     remainder="passthrough",
@@ -84,7 +84,7 @@ with mlflow.start_run():
     mlflow.sklearn.log_model(model, name="model")
 
 MODEL_FILE.parent.mkdir(parents=True, exist_ok=True)
-# сжатие: без него файл весит 100 МБ вместо 6
+# compression: without it the file is 100 MB instead of 6
 joblib.dump(model, MODEL_FILE, compress=3)
 METRICS_FILE.write_text(json.dumps(metrics, indent=2))
 

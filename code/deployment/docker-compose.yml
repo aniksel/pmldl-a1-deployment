@@ -1,7 +1,7 @@
 services:
   api:
     build:
-      # контекст - корень проекта, чтобы образ видел и код, и модель
+      # context is the project root, so the image can see both the code and the model
       context: ../..
       dockerfile: code/deployment/api/Dockerfile
     container_name: housing-api
