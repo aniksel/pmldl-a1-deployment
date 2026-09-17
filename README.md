@@ -107,8 +107,8 @@ source .venv/bin/activate
 
 export AIRFLOW_HOME=$(pwd)/services/airflow
 export AIRFLOW__CORE__LOAD_EXAMPLES=False
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES   # macOS only
-export NO_PROXY="*"                              # macOS only
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+export NO_PROXY="*" 
 
 airflow standalone
 ```
