@@ -73,10 +73,11 @@ pip install -r requirements.txt \
 The constraints file is required: Airflow pins the versions of its ~600
 dependencies, and `requirements.txt` follows those pins.
 
-The raw data is already in `data/raw/housing.csv`. To re-download it:
+The raw data is already in `data/raw/housing.csv`, so nothing else is needed.
+The script that fetched it is kept for reference and overwrites the file:
 
 ```bash
-python code/datasets/download_data.py --force
+python code/datasets/download_data.py
 ```
 
 ## Running the pipeline manually
@@ -99,9 +100,11 @@ docker compose up --build                # Stage 3
 
 ## Running the pipeline automatically
 
-From the project root:
+From the project root, with the virtual environment active:
 
 ```bash
+source .venv/bin/activate
+
 export AIRFLOW_HOME=$(pwd)/services/airflow
 export AIRFLOW__CORE__LOAD_EXAMPLES=False
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES   # macOS only
@@ -115,7 +118,8 @@ the startup log and stored in
 `services/airflow/simple_auth_manager_passwords.json.generated`.
 
 Enable the `pmldl_pipeline` DAG in the UI — it then runs every 5 minutes on its
-own, ending each run with the two containers up to date.
+own, ending each run with the two containers up to date. The DAG calls the
+scripts through `.venv/bin/python`, so keep the virtual environment in `.venv`.
 
 ## Viewing the experiment tracking
 
